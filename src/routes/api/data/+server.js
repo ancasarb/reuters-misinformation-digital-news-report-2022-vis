@@ -124,32 +124,32 @@ export async function GET() {
 		},
 		{
 			region: 'Africa',
-			topic: ' Immigration',
+			topic: 'Immigration',
 			percentage: 16
 		},
 		{
 			region: 'Europe',
-			topic: 'products(e.g. scams)',
+			topic: 'Products (e.g. scams)',
 			percentage: 16
 		},
 		{
 			region: 'North America',
-			topic: 'products(e.g. scams)',
+			topic: 'Products (e.g. scams)',
 			percentage: 19
 		},
 		{
 			region: 'Asia',
-			topic: 'products(e.g. scams)',
+			topic: 'Products (e.g. scams)',
 			percentage: 22
 		},
 		{
 			region: 'Latin America',
-			topic: 'products(e.g. scams)',
+			topic: 'Products (e.g. scams)',
 			percentage: 26
 		},
 		{
 			region: 'Africa',
-			topic: 'products(e.g. scams)',
+			topic: 'Products (e.g. scams)',
 			percentage: 29
 		}
 	]);
