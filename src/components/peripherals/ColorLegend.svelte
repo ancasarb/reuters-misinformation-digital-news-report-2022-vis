@@ -1,17 +1,24 @@
 <script>
-	import { regionsLegend } from '../ui/metadata';
-	import { keys } from 'lodash';
+	export let width;
+	export let colorScale;
+	export let keys;
+	export let selected;
 </script>
 
-<div class="legend-container">
+<div class="legend-container" style="max-width: {width}px;">
 	<ul class="color-legend">
-		{#each keys(regionsLegend) as region}
+		{#each keys as key}
 			<li class="color-legend-item">
 				<span
 					class="color-legend-item-color"
-					style={`background-color: ${regionsLegend[region]};`}
+					style={`background-color: ${colorScale(key)}; opacity: ${
+						key === selected || selected === '' ? 1 : 0.15
+					}`}
 				/>
-				<span class="color-legend-item-label">{region}</span>
+				<span
+					class="color-legend-item-label"
+					style={`opacity: ${key === selected || selected === '' ? 1 : 0.15}`}>{key}</span
+				>
 			</li>
 		{/each}
 	</ul>
@@ -47,5 +54,10 @@
 
 	li {
 		list-style: none;
+	}
+
+	.legend-container {
+		border-bottom: #d1c8d2 solid;
+		padding-bottom: 10px;
 	}
 </style>
