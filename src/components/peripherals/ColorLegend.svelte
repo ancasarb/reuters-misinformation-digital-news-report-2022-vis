@@ -12,12 +12,12 @@
 				<span
 					class="color-legend-item-color"
 					style={`background-color: ${colorScale(key)}; opacity: ${
-						key === selected || selected === '' ? 1 : 0.15
+						key === selected || selected === '' ? 1 : 0.125
 					}`}
 				/>
 				<span
 					class="color-legend-item-label"
-					style={`opacity: ${key === selected || selected === '' ? 1 : 0.15}`}>{key}</span
+					style={`opacity: ${key === selected || selected === '' ? 1 : 0.125}`}>{key}</span
 				>
 			</li>
 		{/each}
@@ -59,5 +59,9 @@
 	.legend-container {
 		border-bottom: #d1c8d2 solid;
 		padding-bottom: 10px;
+	}
+
+	span {
+		transition: opacity 0.2s ease-out;
 	}
 </style>

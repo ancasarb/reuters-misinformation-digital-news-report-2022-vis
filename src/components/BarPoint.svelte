@@ -1,4 +1,7 @@
 <script>
+	import { onMount } from 'svelte';
+	import { select, easeCubicOut } from 'd3';
+
 	export let data;
 
 	export let onSelect;
@@ -17,6 +20,26 @@
 	$: key = yAccessor(data);
 	$: x = xScale(percentage);
 	$: y = yScale(key);
+
+	let valueRef;
+	let textRef;
+
+	onMount(() => updateOpacity(key));
+
+	$: updateOpacity(key, selected);
+
+	const updateOpacity = (d, s) => {
+		select(valueRef)
+			.transition()
+			.duration(500)
+			.ease(easeCubicOut)
+			.attr('opacity', d === s || selected === '' ? 1 : 0.125);
+		select(textRef)
+			.transition()
+			.duration(500)
+			.ease(easeCubicOut)
+			.style('opacity', d === s || selected === '' ? 1 : 0);
+	};
 </script>
 
 <rect
@@ -34,9 +57,9 @@
 	height={yScale.bandwidth()}
 	width={x}
 	fill={colorScale(key)}
-	opacity={key === selected || selected === '' ? 1 : 0.15}
 	on:mouseover={onSelect}
 	on:mouseout={onReset}
+	bind:this={valueRef}
 />
 
 <text
@@ -46,9 +69,9 @@
 	{y}
 	dy={4}
 	dominant-baseline="hanging"
-	opacity={key === selected || selected === '' ? 1 : 0}
 	on:mouseover={onSelect}
-	on:mouseout={onReset}>{percentage}%</text
+	on:mouseout={onReset}
+	bind:this={textRef}>{percentage}%</text
 >
 
 <style>
