@@ -25,18 +25,23 @@
 			left: 0,
 			bottom: 50,
 			right: 50
+		},
+		series: {
+			padding: 20,
+			margin: {
+				left: 100
+			}
 		}
 	};
 
 	dimensions.innerWidth = dimensions.width - dimensions.margin.left - dimensions.margin.right;
 	dimensions.innerHeight = dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
 
-	const padding = 20;
-	const seriesHeight = (dimensions.innerHeight - (series.length - 1) * padding) / series.length;
-	const seriesLeftMargin = 100;
+	dimensions.series.height =
+		(dimensions.innerHeight - (series.length - 1) * dimensions.series.padding) / series.length;
 
 	$: xScale = scaleLinear().domain([0, 100]).range([0, dimensions.innerWidth]);
-	$: yScale = scaleBand().domain(keys).rangeRound([seriesHeight, 15]).paddingInner(0.2);
+	$: yScale = scaleBand().domain(keys).rangeRound([dimensions.series.height, 15]).paddingInner(0.2);
 
 	$: colorScale = scaleOrdinal().domain(keys).range(colors);
 
@@ -55,7 +60,11 @@
 	<g transform={`translate(${dimensions.margin.left}, ${dimensions.margin.top})`}>
 		{#each series as key, i}
 			{@const filtered = filter(data, (item) => seriesAccessor(item) === key)}
-			<BarSeries {key} leftMargin={seriesLeftMargin} topMargin={(padding + seriesHeight) * i}>
+			<BarSeries
+				{key}
+				leftMargin={dimensions.series.margin.left}
+				topMargin={(dimensions.series.padding + dimensions.series.height) * i}
+			>
 				{#each filtered as datum}
 					<BarPoint
 						{datum}
