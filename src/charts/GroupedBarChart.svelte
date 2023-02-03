@@ -1,10 +1,12 @@
 <script>
 	import ColorLegend from '../components/peripherals/ColorLegend.svelte';
-
-	import { scaleBand, scaleLinear, scaleOrdinal } from 'd3';
 	import ChartTitle from '../components/peripherals/ChartTitle.svelte';
 	import ChartFootnote from '../components/peripherals/ChartFootnote.svelte';
 	import BarSeries from '../components/BarSeries.svelte';
+	import BarPoint from '../components/BarPoint.svelte';
+
+	import { scaleBand, scaleLinear, scaleOrdinal } from 'd3';
+	import { filter } from 'lodash';
 
 	export let data;
 	export let series;
@@ -51,21 +53,23 @@
 
 <svg viewBox="0,0,{dimensions.width},{dimensions.height}" style="max-width: {dimensions.width}px;">
 	<g transform={`translate(${dimensions.margin.left}, ${dimensions.margin.top})`}>
-		{#each series as s, i}
-			<BarSeries
-				{data}
-				key={s}
-				condition={(item) => seriesAccessor(item) === s}
-				leftMargin={seriesLeftMargin}
-				topMargin={(padding + seriesHeight) * i}
-				{onSelect}
-				{selected}
-				{xAccessor}
-				{xScale}
-				{yAccessor}
-				{yScale}
-				{colorScale}
-			/>
+		{#each series as key, i}
+			{@const filtered = filter(data, (item) => seriesAccessor(item) === key)}
+			<BarSeries {key} leftMargin={seriesLeftMargin} topMargin={(padding + seriesHeight) * i}>
+				{#each filtered as datum}
+					<BarPoint
+						{datum}
+						onSelect={() => onSelect(yAccessor(datum))}
+						onReset={() => onSelect('')}
+						{selected}
+						{xAccessor}
+						{xScale}
+						{yAccessor}
+						{yScale}
+						{colorScale}
+					/>
+				{/each}
+			</BarSeries>
 		{/each}
 	</g>
 </svg>

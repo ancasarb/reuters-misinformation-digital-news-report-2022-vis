@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { select, easeCubicOut } from 'd3';
 
-	export let data;
+	export let datum;
 
 	export let onSelect;
 	export let onReset;
@@ -16,8 +16,8 @@
 
 	export let colorScale;
 
-	$: percentage = xAccessor(data);
-	$: key = yAccessor(data);
+	$: percentage = xAccessor(datum);
+	$: key = yAccessor(datum);
 	$: x = xScale(percentage);
 	$: y = yScale(key);
 
@@ -34,6 +34,7 @@
 			.duration(500)
 			.ease(easeCubicOut)
 			.attr('opacity', d === s || selected === '' ? 1 : 0.125);
+
 		select(textRef)
 			.transition()
 			.duration(500)
