@@ -10,7 +10,7 @@
 
 	export let data;
 	export let series;
-	export let keys;
+	export let bars;
 	export let colors;
 
 	export let xAccessor;
@@ -41,9 +41,9 @@
 		(dimensions.innerHeight - (series.length - 1) * dimensions.series.padding) / series.length;
 
 	$: xScale = scaleLinear().domain([0, 100]).range([0, dimensions.innerWidth]);
-	$: yScale = scaleBand().domain(keys).rangeRound([dimensions.series.height, 15]).paddingInner(0.2);
+	$: yScale = scaleBand().domain(bars).rangeRound([dimensions.series.height, 15]).paddingInner(0.2);
 
-	$: colorScale = scaleOrdinal().domain(keys).range(colors);
+	$: colorScale = scaleOrdinal().domain(bars).range(colors);
 
 	let selected = '';
 
@@ -54,7 +54,7 @@
 
 <ChartTitle width={dimensions.width} />
 
-<ColorLegend width={dimensions.width} {colorScale} {keys} {selected} />
+<ColorLegend width={dimensions.width} {colorScale} keys={bars} {selected} />
 
 <svg viewBox="0,0,{dimensions.width},{dimensions.height}" style="max-width: {dimensions.width}px;">
 	<g transform={`translate(${dimensions.margin.left}, ${dimensions.margin.top})`}>
@@ -62,13 +62,13 @@
 			{@const filtered = filter(data, (item) => seriesAccessor(item) === key)}
 			<BarSeries
 				{key}
-				leftMargin={dimensions.series.margin.left}
-				topMargin={(dimensions.series.padding + dimensions.series.height) * i}
+				left={dimensions.series.margin.left}
+				top={(dimensions.series.padding + dimensions.series.height) * i}
 			>
-				{#each filtered as datum}
+				{#each filtered as d}
 					<BarPoint
-						{datum}
-						onSelect={() => onSelect(yAccessor(datum))}
+						{d}
+						onSelect={() => onSelect(yAccessor(d))}
 						onReset={() => onSelect('')}
 						{selected}
 						{xAccessor}

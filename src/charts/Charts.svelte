@@ -16,7 +16,7 @@
 
 	const topicAccessor = (d) => d.topic;
 	const regionAccessor = (d) => d.region;
-	const dataAccessor = (d) => d.percentage;
+	const valueAccessor = (d) => d.percentage;
 </script>
 
 <div class="container">
@@ -26,9 +26,9 @@
 		<GroupedBarChart
 			{data}
 			series={topics}
-			keys={regions}
+			bars={regions}
 			{colors}
-			xAccessor={dataAccessor}
+			xAccessor={valueAccessor}
 			yAccessor={regionAccessor}
 			seriesAccessor={topicAccessor}
 		/>

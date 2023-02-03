@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { select, easeCubicOut } from 'd3';
 
-	export let datum;
+	export let d;
 
 	export let onSelect;
 	export let onReset;
@@ -16,8 +16,8 @@
 
 	export let colorScale;
 
-	$: percentage = xAccessor(datum);
-	$: key = yAccessor(datum);
+	$: percentage = xAccessor(d);
+	$: key = yAccessor(d);
 	$: x = xScale(percentage);
 	$: y = yScale(key);
 
