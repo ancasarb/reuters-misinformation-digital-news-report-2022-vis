@@ -1,6 +1,7 @@
 <script>
-	import load from '../routes/api/api';
 	import GroupedBarChart from './GroupedBarChart.svelte';
+
+	export let data;
 
 	const topics = [
 		'COVID-19',
@@ -20,19 +21,15 @@
 </script>
 
 <div class="container">
-	{#await load('/api/data')}
-		<div class="loading">Loading...</div>
-	{:then data}
-		<GroupedBarChart
-			{data}
-			series={topics}
-			bars={regions}
-			{colors}
-			xAccessor={valueAccessor}
-			yAccessor={regionAccessor}
-			seriesAccessor={topicAccessor}
-		/>
-	{/await}
+	<GroupedBarChart
+		{data}
+		series={topics}
+		bars={regions}
+		{colors}
+		xAccessor={valueAccessor}
+		yAccessor={regionAccessor}
+		seriesAccessor={topicAccessor}
+	/>
 </div>
 
 <style>
@@ -46,9 +43,5 @@
 		width: 100%;
 		max-width: 1440px;
 		font-family: 'Inter', sans-serif;
-	}
-
-	.loading {
-		margin: 6rem 0 1rem;
 	}
 </style>
