@@ -8,16 +8,14 @@
 <div class="legend-container" style="max-width: {width}px;">
 	<ul class="color-legend">
 		{#each keys as key}
+			{@const selection = key === selected || selected === '' ? 'selected': 'greyed'}
 			<li class="color-legend-item">
 				<span
-					class="color-legend-item-color"
-					style={`background-color: ${colorScale(key)}; opacity: ${
-						key === selected || selected === '' ? 1 : 0.125
-					}`}
+					class={`color-legend-item-color ${selection}`}
+					style={`background-color: ${colorScale(key)};`}
 				/>
 				<span
-					class="color-legend-item-label"
-					style={`opacity: ${key === selected || selected === '' ? 1 : 0.125}`}>{key}</span
+					class={`color-legend-item-label ${selection}`}>{key}</span
 				>
 			</li>
 		{/each}
@@ -56,12 +54,20 @@
 		list-style: none;
 	}
 
+	.selected {
+		opacity: 1;
+	}
+
+	.greyed {
+		opacity: 0.125;
+	}
+
 	.legend-container {
 		border-bottom: #d1c8d2 solid;
 		padding-bottom: 10px;
 	}
 
 	span {
-		transition: opacity 0.2s ease-out;
+		transition: opacity 0.5s ease-out;
 	}
 </style>

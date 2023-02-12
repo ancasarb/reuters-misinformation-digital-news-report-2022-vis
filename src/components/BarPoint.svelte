@@ -1,6 +1,6 @@
 <script>
-	import { onMount } from 'svelte';
-	import { select, easeCubicOut } from 'd3';
+	import { tweened } from 'svelte/motion';
+	import { cubicOut } from 'svelte/easing';
 
 	export let d;
 
@@ -21,25 +21,26 @@
 	$: x = xScale(percentage);
 	$: y = yScale(key);
 
-	let valueRef;
-	let textRef;
+	const valueOpacity = tweened(1, {
+		duration: 500,
+		easing: cubicOut
+	});
 
-	onMount(() => updateOpacity(key));
+	const textOpacity = tweened(1, {
+		duration: 500,
+		easing: cubicOut
+	});
 
 	$: updateOpacity(key, selected);
 
 	const updateOpacity = (d, s) => {
-		select(valueRef)
-			.transition()
-			.duration(500)
-			.ease(easeCubicOut)
-			.attr('opacity', d === s || selected === '' ? 1 : 0.125);
-
-		select(textRef)
-			.transition()
-			.duration(500)
-			.ease(easeCubicOut)
-			.style('opacity', d === s || selected === '' ? 1 : 0);
+		if ((d === s || selected === '')) {
+			valueOpacity.set(1);
+			textOpacity.set(1);
+		} else {
+			valueOpacity.set(0.125);
+			textOpacity.set(0);
+		}
 	};
 </script>
 
@@ -60,7 +61,7 @@
 	fill={colorScale(key)}
 	on:mouseover={onSelect}
 	on:mouseout={onReset}
-	bind:this={valueRef}
+	opacity={$valueOpacity}
 />
 
 <text
@@ -72,7 +73,7 @@
 	dominant-baseline="hanging"
 	on:mouseover={onSelect}
 	on:mouseout={onReset}
-	bind:this={textRef}>{percentage}%</text
+	opacity={$textOpacity}>{percentage}%</text
 >
 
 <style>
