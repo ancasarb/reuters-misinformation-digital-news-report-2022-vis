@@ -2,7 +2,7 @@
 	import TextBlock from '../generic/TextBlock.svelte';
 
 	export let width;
-	const height = 125;
+	const height = 100;
 </script>
 
 <svg viewBox="0,0,{width}, {height}" style="max-width: {width}px;">
@@ -19,7 +19,6 @@
 
 <style>
 	svg {
-		padding-top: 20px;
 		padding-bottom: 10px;
 	}
 </style>
