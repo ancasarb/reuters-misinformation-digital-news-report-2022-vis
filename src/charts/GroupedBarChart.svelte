@@ -21,28 +21,19 @@
 		width: 720,
 		height: 1024,
 		margin: {
-			top: 0,
-			left: 0,
+			top: 20,
+			left: 100,
 			bottom: 50,
 			right: 50
-		},
-		series: {
-			padding: 20,
-			margin: {
-				left: 100
-			}
 		}
 	};
 
 	dimensions.innerWidth = dimensions.width - dimensions.margin.left - dimensions.margin.right;
 	dimensions.innerHeight = dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
 
-	dimensions.series.height =
-		(dimensions.innerHeight - (series.length - 1) * dimensions.series.padding) / series.length;
-
-	$: xScale = scaleLinear().domain([0, 100]).range([0, dimensions.innerWidth]);
-	$: yScale = scaleBand().domain(bars).rangeRound([dimensions.series.height, 15]).paddingInner(0.2);
-
+	$: xScaleSeries = scaleBand().domain(series).range([0, dimensions.innerHeight]).paddingInner(0.2);
+	$: xScaleBars = scaleLinear().domain([0, 100]).range([0, dimensions.innerWidth]);
+	$: yScale = scaleBand().domain(bars).range([0, xScaleSeries.bandwidth()]).paddingInner(0.2);
 	$: colorScale = scaleOrdinal().domain(bars).range(colors);
 
 	let selected = '';
@@ -57,28 +48,29 @@
 <ColorLegend width={dimensions.width} {colorScale} keys={bars} {selected} />
 
 <svg viewBox="0,0,{dimensions.width},{dimensions.height}" style="max-width: {dimensions.width}px;">
-	<g transform={`translate(${dimensions.margin.left}, ${dimensions.margin.top})`}>
-		{#each series as key, i}
+	<g transform={`translate(0, ${dimensions.margin.top})`}>
+		{#each series as key}
 			{@const filtered = filter(data, (item) => seriesAccessor(item) === key)}
-			<BarSeries
-				{key}
-				left={dimensions.series.margin.left}
-				top={(dimensions.series.padding + dimensions.series.height) * i}
-			>
-				{#each filtered as d}
-					<BarPoint
-						{d}
-						onSelect={() => onSelect(yAccessor(d))}
-						onReset={() => onSelect('')}
-						{selected}
-						{xAccessor}
-						{xScale}
-						{yAccessor}
-						{yScale}
-						{colorScale}
-					/>
-				{/each}
-			</BarSeries>
+
+			<g transform={`translate(0, ${xScaleSeries(key)})`}>
+				<BarSeries {key}>
+					{#each filtered as d}
+						<g transform={`translate(${dimensions.margin.left}, 0)`}>
+							<BarPoint
+								{d}
+								onSelect={() => onSelect(yAccessor(d))}
+								onReset={() => onSelect('')}
+								{selected}
+								{xAccessor}
+								xScale={xScaleBars}
+								{yAccessor}
+								{yScale}
+								{colorScale}
+							/>
+						</g>
+					{/each}
+				</BarSeries>
+			</g>
 		{/each}
 	</g>
 </svg>

@@ -19,6 +19,7 @@
 
 <style>
 	svg {
+		padding-top: 20px;
 		padding-bottom: 10px;
 	}
 </style>
