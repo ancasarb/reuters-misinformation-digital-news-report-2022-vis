@@ -1,24 +1,27 @@
 <script>
-	import ColorLegend from '../peripherals/ColorLegend.svelte';
-	import ChartTitle from '../peripherals/ChartTitle.svelte';
-	import ChartFootnote from '../peripherals/ChartFootnote.svelte';
-	import BarSeries from '../BarSeries.svelte';
-	import BarPoint from '../BarPoint.svelte';
+	import ColorLegend from '../../peripherals/ColorLegend.svelte';
+	import ChartTitle from '../../peripherals/ChartTitle.svelte';
+	import ChartFootnote from '../../peripherals/ChartFootnote.svelte';
 
-	import Chart from './Chart.svelte';
+	import BarCluster from './BarCluster.svelte';
+	import Bar from './Bar.svelte';
 
-	import { scaleBand, scaleLinear, scaleOrdinal } from 'd3';
+	import Chart from '../../generic/Chart.svelte';
+
+	import { scaleBand, scaleLinear } from 'd3';
 	import lodash from 'lodash';
 	const filter = lodash.filter;
 
 	export let data;
-	export let series;
+	export let format;
+
+	export let clusters;
 	export let bars;
-	export let colors;
+	export let colorScale;
 
 	export let valueAccessor;
 	export let barAccessor;
-	export let seriesAccessor;
+	export let clusterAccessor;
 
 	const dimensions = {
 		width: 720,
@@ -34,10 +37,12 @@
 	dimensions.innerWidth = dimensions.width - dimensions.margin.left - dimensions.margin.right;
 	dimensions.innerHeight = dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
 
-	$: xScaleSeries = scaleBand().domain(series).range([0, dimensions.innerHeight]).paddingInner(0.2);
+	$: xScaleClusters = scaleBand()
+		.domain(clusters)
+		.range([0, dimensions.innerHeight])
+		.paddingInner(0.2);
 	$: xScaleBars = scaleLinear().domain([0, 100]).range([0, dimensions.innerWidth]);
-	$: yScale = scaleBand().domain(bars).range([0, xScaleSeries.bandwidth()]).paddingInner(0.2);
-	$: colorScale = scaleOrdinal().domain(bars).range(colors);
+	$: yScale = scaleBand().domain(bars).range([0, xScaleClusters.bandwidth()]).paddingInner(0.2);
 
 	let selected = '';
 
@@ -56,14 +61,14 @@
 		style="max-width: {dimensions.width}px;"
 	>
 		<g transform={`translate(0, ${dimensions.margin.top})`}>
-			{#each series as key}
-				{@const filtered = filter(data, (item) => seriesAccessor(item) === key)}
+			{#each clusters as cluster}
+				{@const clusterData = filter(data, (item) => clusterAccessor(item) === cluster)}
 
-				<g transform={`translate(0, ${xScaleSeries(key)})`}>
-					<BarSeries {key}>
-						{#each filtered as d}
+				<g transform={`translate(0, ${xScaleClusters(cluster)})`}>
+					<BarCluster category={cluster}>
+						{#each clusterData as d}
 							<g transform={`translate(${dimensions.margin.left}, 0)`}>
-								<BarPoint
+								<Bar
 									{d}
 									onSelect={() => onSelect(barAccessor(d))}
 									onReset={() => onSelect('')}
@@ -72,11 +77,12 @@
 									xScale={xScaleBars}
 									yAccessor={barAccessor}
 									{yScale}
-									{colorScale}
+									color={colorScale(barAccessor(d))}
+									{format}
 								/>
 							</g>
 						{/each}
-					</BarSeries>
+					</BarCluster>
 				</g>
 			{/each}
 		</g>

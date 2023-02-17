@@ -1,24 +1,25 @@
 <script>
-	import DotPlot from '../../components/charts/DotPlot.svelte';
+	import Chart from '../../components/charts/dotplot/Chart.svelte';
 
 	import {
-		regionAccessor,
-		valueAccessor,
-		topicAccessor,
-		topics,
+		colorScale,
 		regions,
-		colors
+		regionAccessor,
+		topics,
+		topicAccessor,
+		valueAccessor
 	} from '../accessors.js';
 
 	export let data;
 </script>
 
-<DotPlot
+<Chart
 	data={data.values}
-	rows={topics}
-	points={regions}
-	{colors}
-	xAccessor={valueAccessor}
-	colorAccessor={regionAccessor}
-	yAccessor={topicAccessor}
+	groups={topics}
+	dots={regions}
+	{valueAccessor}
+	dotAccessor={regionAccessor}
+	groupAccessor={topicAccessor}
+	{colorScale}
+	format="%"
 />

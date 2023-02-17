@@ -14,12 +14,13 @@
 	export let yAccessor;
 	export let yScale;
 
-	export let colorScale;
+	export let color;
+	export let format;
 
-	$: percentage = xAccessor(d);
-	$: key = yAccessor(d);
-	$: x = xScale(percentage);
-	$: y = yScale(key);
+	$: category = yAccessor(d);
+	$: value = xAccessor(d);
+	$: x = xScale(value);
+	$: y = yScale(category);
 
 	const valueOpacity = tweened(1, {
 		duration: 500,
@@ -31,17 +32,17 @@
 		easing: cubicOut
 	});
 
-	$: updateOpacity(key, selected);
-
-	const updateOpacity = (d, s) => {
-		if ((d === s || selected === '')) {
-			valueOpacity.set(1);
-			textOpacity.set(1);
-		} else {
+	$: {
+		const isGreyedOut = !(category === selected || selected === '');
+		if (isGreyedOut) {
 			valueOpacity.set(0.125);
 			textOpacity.set(0);
+		} else {
+			valueOpacity.set(1);
+			textOpacity.set(1);
 		}
-	};
+	}
+
 </script>
 
 <rect
@@ -58,7 +59,7 @@
 	{y}
 	height={yScale.bandwidth()}
 	width={x}
-	fill={colorScale(key)}
+	fill={color}
 	on:mouseover={onSelect}
 	on:mouseout={onReset}
 	opacity={$valueOpacity}
@@ -73,7 +74,7 @@
 	dominant-baseline="hanging"
 	on:mouseover={onSelect}
 	on:mouseout={onReset}
-	opacity={$textOpacity}>{percentage}%</text
+	opacity={$textOpacity}>{value}{format}</text
 >
 
 <style>
