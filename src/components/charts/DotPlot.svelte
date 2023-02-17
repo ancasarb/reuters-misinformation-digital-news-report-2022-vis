@@ -7,7 +7,8 @@
 	import DotPlotLine from '../DotPlotLine.svelte';
 
 	import { scaleBand, scaleLinear, scaleOrdinal, max, color } from 'd3';
-	import { filter } from 'lodash';
+	import lodash from 'lodash';
+	const filter = lodash.filter;
 
 	export let data;
 
