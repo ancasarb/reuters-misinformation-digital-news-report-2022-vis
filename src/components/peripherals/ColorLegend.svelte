@@ -1,21 +1,21 @@
 <script>
 	export let width;
 	export let colorScale;
-	export let keys;
+	export let categories;
 	export let selected;
 </script>
 
 <div class="legend-container" style="max-width: {width}px;">
 	<ul class="color-legend">
-		{#each keys as key}
-			{@const selection = key === selected || selected === '' ? 'selected': 'greyed'}
+		{#each categories as category}
+			{@const selection = category === selected || selected === '' ? 'selected': 'greyed'}
 			<li class="color-legend-item">
 				<span
 					class={`color-legend-item-color ${selection}`}
-					style={`background-color: ${colorScale(key)};`}
+					style={`background-color: ${colorScale(category)};`}
 				/>
 				<span
-					class={`color-legend-item-label ${selection}`}>{key}</span
+					class={`color-legend-item-label ${selection}`}>{category}</span
 				>
 			</li>
 		{/each}

@@ -54,7 +54,7 @@
 <Chart>
 	<ChartTitle width={dimensions.width} />
 
-	<ColorLegend width={dimensions.width} {colorScale} keys={bars} {selected} />
+	<ColorLegend width={dimensions.width} {colorScale} categories={bars} {selected} />
 
 	<svg
 		viewBox="0,0,{dimensions.width},{dimensions.height}"

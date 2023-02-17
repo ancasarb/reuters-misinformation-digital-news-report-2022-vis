@@ -53,7 +53,7 @@
 <Chart>
 	<ChartTitle width={dimensions.width} />
 
-	<ColorLegend width={dimensions.width} {colorScale} keys={dots} {selected} />
+	<ColorLegend width={dimensions.width} {colorScale} categories={dots} {selected} />
 
 	<svg
 		viewBox="0,0,{dimensions.width},{dimensions.height}"
@@ -68,8 +68,9 @@
 							{@const category = dotAccessor(d)}
 							{@const value = valueAccessor(d)}
 							<Dot
-								{value}
 								{category}
+								{value}
+								{format}
 								x={valueScale(value)}
 								y={groupScale.bandwidth()}
 								color={colorScale(category)}
