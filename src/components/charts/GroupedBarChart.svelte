@@ -8,7 +8,8 @@
 	import Chart from './Chart.svelte';
 
 	import { scaleBand, scaleLinear, scaleOrdinal } from 'd3';
-	import { filter } from 'lodash';
+	import lodash from 'lodash';
+	const filter = lodash.filter;
 
 	export let data;
 	export let series;

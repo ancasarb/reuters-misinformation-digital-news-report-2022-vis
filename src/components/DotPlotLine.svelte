@@ -1,7 +1,8 @@
 <script>
 	import TextBlock from './generic/TextBlock.svelte';
 	import { axisBottom, select } from 'd3';
-	import { range } from 'lodash';
+	import lodash from 'lodash';
+	const range = lodash.range;
 
 	export let key;
 	export let y;
