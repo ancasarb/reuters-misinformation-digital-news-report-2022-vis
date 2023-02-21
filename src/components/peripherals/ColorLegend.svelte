@@ -5,7 +5,7 @@
 	export let selected;
 </script>
 
-<div class="legend-container" style="max-width: {width}px;">
+<div class="legend-container" style="width: {width}px;">
 	<ul class="color-legend">
 		{#each categories as category}
 			{@const selection = category === selected || selected === '' ? 'selected': 'greyed'}

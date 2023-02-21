@@ -1,16 +1,27 @@
 <script>
-	import TextBlock from '../../generic/TextBlock.svelte';
-
 	export let category;
-
-	const display = function (category) {
-		var i = category.indexOf(' ');
-		if (i > 0) {
-			return [category.substring(0, i), category.substring(i + 1)];
-		} else return [category];
-	};
+  export let width = 50;
 </script>
 
-<TextBlock text={display(category)} fontSize="16" color="#414140" />
+<div class="cluster">
+  <div class="category" style:width="{width}px">{category}</div>
+  <div class="bars">
+    <slot />
+  </div>
+</div>
 
-<slot />
+<style>
+  .cluster {
+      display: flex;
+      height: 100%;
+  }
+
+  .category {
+      font-size: 16px;
+      color: #414140;
+  }
+
+  .bars {
+      flex-grow: 1;
+  }
+</style>
