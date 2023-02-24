@@ -1,4 +1,5 @@
 <script>
+	import Chart from '../../../components/charts/horizontalgroupedbarchart/Chart.svelte';
 	import {
 		colorScale,
 		regions,
@@ -6,11 +7,11 @@
 		topics,
 		topicAccessor,
 		valueAccessor
-	} from '../accessors.js';
+	} from '../../../lib/accessors.js';
 
-	import Chart from '../../components/charts/horizontalgroupedbarchart/Chart.svelte';
 
 	export let data;
+
 </script>
 
 <Chart
@@ -22,4 +23,5 @@
 	{valueAccessor}
 	barAccessor={regionAccessor}
 	clusterAccessor={topicAccessor}
+	selected={data.context.regions[0]}
 />

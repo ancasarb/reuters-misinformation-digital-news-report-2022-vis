@@ -1,4 +1,10 @@
-export function load() {
+import { hashToObject, objectToHash } from '../lib/hash-conversions';
+
+export function load({ params }) {
+	const hash = params.hash == null ? null : hashToObject(params.hash);
+
+	// console.log(objectToHash({regions: ['Europe', 'Asia']}));
+
 	return {
 		values: [
 			{
@@ -151,6 +157,7 @@ export function load() {
 				topic: 'Products (e.g. scams)',
 				percentage: 29
 			}
-		]
+		],
+		context: hash
 	};
 }

@@ -8,7 +8,7 @@
 		topics,
 		topicAccessor,
 		valueAccessor
-	} from '../accessors.js';
+	} from '../../lib/accessors.js';
 
 	export let data;
 </script>
