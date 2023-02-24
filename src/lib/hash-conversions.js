@@ -1,8 +1,8 @@
-import { compressToBase64, decompressFromBase64 } from 'lz-string';
+// import { compressToBase64, decompressFromBase64 } from 'lz-string';
 
-// import pkg from 'lz-string';
-// const { compressToBase64 } = pkg.compressToBase64;
-// const { decompressFromBase64 } = pkg.decompressFromBase64; 
+import pkg from 'lz-string';
+const compressToBase64 = pkg.compressToBase64;
+const decompressFromBase64 = pkg.decompressFromBase64; 
 
 export function objectToHash(anyObject) {
 	return compressToBase64(JSON.stringify(anyObject));
