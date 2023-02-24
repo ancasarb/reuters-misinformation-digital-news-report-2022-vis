@@ -1,7 +1,7 @@
 import { hashToObject, objectToHash } from '../lib/hash-conversions';
 
 export function load({ params }) {
-	const filters = params.filters == null ? null : hashToObject(params.filters);
+	const hash = params.hash == null ? null : hashToObject(params.hash);
 
 	// console.log(objectToHash({regions: ['Europe', 'Asia']}));
 
@@ -158,6 +158,6 @@ export function load({ params }) {
 				percentage: 29
 			}
 		],
-		filters: filters
+		context: hash
 	};
 }

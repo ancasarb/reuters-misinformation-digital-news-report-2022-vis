@@ -1,6 +1,6 @@
 <div class="menu">
 <a href="/dotplot">DotPlot</a>
-<a href="/horizontalgroupedbarchart?filters=N4IgTgpg5glg9gOwM4gFwG0QFECuY4AOEIANCAIJIwCGIAugL5A=">Horizontal Grouped BarChart</a>
+<a href="/horizontalgroupedbarchart/N4IgTgpg5glg9gOwM4gFwG0QFECuY4AOEIANCAIJIwCGIAugL5A=">Horizontal Grouped BarChart</a>
 </div>
 
 <style>

@@ -23,6 +23,7 @@
   export let valueAccessor;
   export let barAccessor;
   export let clusterAccessor;
+  export let selected = '';
 
   const dimensions = {
     width: 720,
@@ -44,8 +45,6 @@
     .paddingInner(0.2);
   $: xScaleBars = scaleLinear().domain([0, 100]).range([0, dimensions.innerWidth]);
   $: yScale = scaleBand().domain(bars).range([0, xScaleClusters.bandwidth()]).paddingInner(0.2);
-
-  let selected = '';
 
   function onSelect(value) {
     selected = value;

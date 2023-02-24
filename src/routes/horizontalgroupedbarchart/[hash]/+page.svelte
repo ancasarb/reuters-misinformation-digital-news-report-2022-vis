@@ -23,4 +23,5 @@
 	{valueAccessor}
 	barAccessor={regionAccessor}
 	clusterAccessor={topicAccessor}
+	selected={data.context.regions[0]}
 />
