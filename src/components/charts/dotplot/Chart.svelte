@@ -1,7 +1,6 @@
 <script>
 	import ChartTitle from '../../peripherals/ChartTitle.svelte';
 	import ColorLegend from '../../peripherals/ColorLegend.svelte';
-	import ChartFootnote from '../../peripherals/ChartFootnote.svelte';
 	import Chart from '../../generic/Chart.svelte';
 
 	import Axis from './Axis.svelte';
@@ -25,7 +24,7 @@
 
 	const dimensions = {
 		width: 720,
-		height: 720,
+		height: 600,
 		margin: {
 			top: 0,
 			left: 10,
@@ -37,7 +36,7 @@
 	dimensions.innerWidth = dimensions.width - dimensions.margin.left - dimensions.margin.right;
 	dimensions.innerHeight = dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
 
-	$: groupScale = scaleBand().domain(groups).range([0, dimensions.innerHeight]).paddingInner(0.1);
+	$: groupScale = scaleBand().domain(groups).range([0, dimensions.innerHeight]).paddingInner(0.2);
 
 	$: maxValue = max(data, valueAccessor);
 	$: maxRange = Math.ceil(maxValue / 10) * 10;
@@ -51,7 +50,7 @@
 </script>
 
 <Chart>
-	<ChartTitle width={dimensions.width} />
+	<ChartTitle/>
 
 	<ColorLegend width={dimensions.width} {colorScale} categories={dots} {selected} />
 
@@ -84,5 +83,4 @@
 			{/each}
 		</g>
 	</svg>
-	<ChartFootnote width={dimensions.width} />
 </Chart>

@@ -3,8 +3,6 @@
 	import lodash from 'lodash';
 	const range = lodash.range;
 
-	import TextBlock from '../../generic/TextBlock.svelte';
-
 	export let category;
 	export let y;
 	export let xScale;
@@ -26,7 +24,7 @@
 </script>
 
 <g transform={`translate(0, ${y / 3})`}>
-	<TextBlock text={[category]} fontSize="16" color="#414140" />
+	<text dominant-baseline="hanging" fill="#414140" font-size="16px"> {category}</text>
 </g>
 
 <g class="axis" bind:this={axis} {transform} />

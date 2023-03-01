@@ -1,7 +1,6 @@
 <script>
   import ColorLegend from '../../peripherals/ColorLegend.svelte';
   import ChartTitle from '../../peripherals/ChartTitle.svelte';
-  import ChartFootnote from '../../peripherals/ChartFootnote.svelte';
 
   import BarCluster from './BarCluster.svelte';
   import Bar from './Bar.svelte';
@@ -53,7 +52,7 @@
 </script>
 
 <Chart>
-  <ChartTitle width={dimensions.width}/>
+  <ChartTitle/>
 
   <ColorLegend width={dimensions.width} {colorScale} categories={bars} {selected}/>
 
@@ -90,5 +89,4 @@
     {/each}
   </div>
 
-  <ChartFootnote width={dimensions.width}/>
 </Chart>

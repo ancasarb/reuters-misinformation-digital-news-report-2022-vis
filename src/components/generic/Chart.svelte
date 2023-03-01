@@ -1,10 +1,8 @@
 <div class="container">
-	<slot></slot>
+	<slot />
 </div>
 
 <style>
-	@import url('https://rsms.me/inter/inter.css');
-
 	.container {
 		margin-right: auto;
 		margin-left: auto;
