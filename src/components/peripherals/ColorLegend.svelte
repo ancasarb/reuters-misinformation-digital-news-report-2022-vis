@@ -3,20 +3,23 @@
 	export let colorScale;
 	export let categories;
 	export let selected;
+	export let onSelect;
 </script>
 
 <div class="legend-container" style="width: {width}px;">
 	<ul class="color-legend">
 		{#each categories as category}
-			{@const selection = category === selected || selected === '' ? 'selected': 'greyed'}
-			<li class="color-legend-item">
+			{@const selection = category === selected || selected === '' ? 'selected' : 'greyed'}
+			<li
+				class="color-legend-item"
+				on:mouseover={() => onSelect(category)}
+				on:mouseout={() => onSelect('')}
+			>
 				<span
 					class={`color-legend-item-color ${selection}`}
 					style={`background-color: ${colorScale(category)};`}
 				/>
-				<span
-					class={`color-legend-item-label ${selection}`}>{category}</span
-				>
+				<span class={`color-legend-item-label ${selection}`}>{category}</span>
 			</li>
 		{/each}
 	</ul>

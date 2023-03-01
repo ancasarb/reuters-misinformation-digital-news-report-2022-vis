@@ -52,7 +52,7 @@
 <Chart>
 	<ChartTitle/>
 
-	<ColorLegend width={dimensions.width} {colorScale} categories={dots} {selected} />
+	<ColorLegend width={dimensions.width} {colorScale} categories={dots} {selected} {onSelect}/>
 
 	<svg
 		viewBox="0,0,{dimensions.width},{dimensions.height}"

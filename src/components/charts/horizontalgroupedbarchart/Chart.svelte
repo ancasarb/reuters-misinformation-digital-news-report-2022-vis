@@ -54,7 +54,7 @@
 <Chart>
   <ChartTitle/>
 
-  <ColorLegend width={dimensions.width} {colorScale} categories={bars} {selected}/>
+  <ColorLegend width={dimensions.width} {colorScale} categories={bars} {selected} {onSelect}/>
 
   <div
     style:width="{dimensions.width}px"
