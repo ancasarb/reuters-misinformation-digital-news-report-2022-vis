@@ -29,7 +29,7 @@
       top: 20,
       left: 100,
       bottom: 50,
-      right: 0
+      right: 10
     }
   };
 

@@ -16,8 +16,7 @@
 		padding-left: 20px;
 		padding-bottom: 20px;
 		padding-top: 20px;
-		width: 100%;
-		max-width: 720px;
+		width: 720px;
 		font-family: 'Inter', sans-serif;
 	}
 </style>
