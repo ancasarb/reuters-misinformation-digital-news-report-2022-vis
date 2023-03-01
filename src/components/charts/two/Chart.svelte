@@ -56,9 +56,7 @@
 		style:top="{dimensions.margin.top}px"
 		style:position="relative"
 	>
-		<svg
-			viewBox="0,0,{dimensions.width},{dimensions.height}"
-		>
+		<svg width={dimensions.width} height={dimensions.height}>
 			<g transform={`translate(${dimensions.margin.left}, ${dimensions.margin.top})`}>
 				{#each groups as group}
 					{@const groupData = filter(data, (item) => groupAccessor(item) === group)}
