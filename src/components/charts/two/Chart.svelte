@@ -50,37 +50,30 @@
 
 <Chart>
 	<ColorLegend width={dimensions.width} {colorScale} categories={dots} {selected} {onSelect} />
-	<div
-		style:width="{dimensions.width}px"
-		style:height="{dimensions.height - dimensions.margin.top}px"
-		style:top="{dimensions.margin.top}px"
-		style:position="relative"
-	>
-		<svg width={dimensions.width} height={dimensions.height}>
-			<g transform={`translate(${dimensions.margin.left}, ${dimensions.margin.top})`}>
-				{#each groups as group}
-					{@const groupData = filter(data, (item) => groupAccessor(item) === group)}
-					<g transform={`translate(0, ${groupScale(group)})`}>
-						<Axis category={group} y={groupScale.bandwidth()} xScale={valueScale} {format}>
-							{#each groupData as d}
-								{@const category = dotAccessor(d)}
-								{@const value = valueAccessor(d)}
-								<Dot
-									{category}
-									{value}
-									{format}
-									x={valueScale(value)}
-									y={groupScale.bandwidth()}
-									color={colorScale(category)}
-									onSelect={() => onSelect(category)}
-									onReset={() => onSelect('')}
-									{selected}
-								/>
-							{/each}
-						</Axis>
-					</g>
-				{/each}
-			</g>
-		</svg>
-	</div>
+	<svg viewBox="0 0 {dimensions.width} {dimensions.height}">
+		<g transform={`translate(${dimensions.margin.left}, ${dimensions.margin.top})`}>
+			{#each groups as group}
+				{@const groupData = filter(data, (item) => groupAccessor(item) === group)}
+				<g transform={`translate(0, ${groupScale(group)})`}>
+					<Axis category={group} y={groupScale.bandwidth()} xScale={valueScale} {format}>
+						{#each groupData as d}
+							{@const category = dotAccessor(d)}
+							{@const value = valueAccessor(d)}
+							<Dot
+								{category}
+								{value}
+								{format}
+								x={valueScale(value)}
+								y={groupScale.bandwidth()}
+								color={colorScale(category)}
+								onSelect={() => onSelect(category)}
+								onReset={() => onSelect('')}
+								{selected}
+							/>
+						{/each}
+					</Axis>
+				</g>
+			{/each}
+		</g>
+	</svg>
 </Chart>
