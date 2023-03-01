@@ -69,6 +69,7 @@
 								onSelect={() => onSelect(category)}
 								onReset={() => onSelect('')}
 								{selected}
+								padding={d.padding}
 							/>
 						{/each}
 					</Axis>

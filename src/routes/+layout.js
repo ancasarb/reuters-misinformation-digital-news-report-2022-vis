@@ -4,7 +4,8 @@ export function load() {
 			{
 				region: 'Europe',
 				topic: 'COVID-19',
-				percentage: 47
+				percentage: 47,
+				padding: -2
 			},
 			{
 				region: 'North America',
@@ -24,7 +25,8 @@ export function load() {
 			{
 				region: 'Africa',
 				topic: 'COVID-19',
-				percentage: 47
+				percentage: 47,
+				padding: 2
 			},
 			{
 				region: 'Europe',
@@ -79,7 +81,8 @@ export function load() {
 			{
 				region: 'Europe',
 				topic: 'Climate change',
-				percentage: 19
+				percentage: 19,
+				padding: -2
 			},
 			{
 				region: 'North America',
@@ -99,7 +102,8 @@ export function load() {
 			{
 				region: 'Africa',
 				topic: 'Climate change',
-				percentage: 19
+				percentage: 19,
+				padding: 2
 			},
 			{
 				region: 'Europe',
