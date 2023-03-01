@@ -75,7 +75,8 @@
 	}
 
 	p,
-	a {
+	a,
+	h1 {
 		text-align: center;
 		text-align-last: center;
 	}
