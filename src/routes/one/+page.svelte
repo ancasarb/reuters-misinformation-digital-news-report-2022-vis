@@ -1,6 +1,4 @@
 <script>
-	import Chart from '../../components/charts/dotplot/Chart.svelte';
-
 	import {
 		colorScale,
 		regions,
@@ -10,16 +8,18 @@
 		valueAccessor
 	} from '../accessors.js';
 
+	import Chart from '../../components/charts/one/Chart.svelte';
+
 	export let data;
 </script>
 
 <Chart
 	data={data.values}
-	groups={topics}
-	dots={regions}
-	{valueAccessor}
-	dotAccessor={regionAccessor}
-	groupAccessor={topicAccessor}
-	{colorScale}
 	format="%"
+	clusters={topics}
+	bars={regions}
+	{colorScale}
+	{valueAccessor}
+	barAccessor={regionAccessor}
+	clusterAccessor={topicAccessor}
 />

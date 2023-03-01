@@ -1,6 +1,5 @@
 <script>
   import ColorLegend from '../../peripherals/ColorLegend.svelte';
-  import ChartTitle from '../../peripherals/ChartTitle.svelte';
 
   import BarCluster from './BarCluster.svelte';
   import Bar from './Bar.svelte';
@@ -52,7 +51,6 @@
 </script>
 
 <Chart>
-  <ChartTitle/>
 
   <ColorLegend width={dimensions.width} {colorScale} categories={bars} {selected} {onSelect}/>
 

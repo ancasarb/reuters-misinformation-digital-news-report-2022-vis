@@ -1,5 +1,4 @@
 <script>
-	import ChartTitle from '../../peripherals/ChartTitle.svelte';
 	import ColorLegend from '../../peripherals/ColorLegend.svelte';
 	import Chart from '../../generic/Chart.svelte';
 
@@ -50,7 +49,6 @@
 </script>
 
 <Chart>
-	<ChartTitle/>
 
 	<ColorLegend width={dimensions.width} {colorScale} categories={dots} {selected} {onSelect}/>
 

@@ -1,4 +1,10 @@
+<script>
+	import ChartTitle from '../peripherals/ChartTitle.svelte';
+</script>
+
 <div class="container">
+	<ChartTitle />
+
 	<slot />
 </div>
 

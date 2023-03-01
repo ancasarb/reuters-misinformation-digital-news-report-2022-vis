@@ -31,8 +31,8 @@
 	>
 </div>
 <div class="charts">
-	<a href="/horizontalgroupedbarchart">#1</a>
-	<a href="/dotplot">#2</a>
+	<a href="/one">#1</a>
+	<a href="/two">#2</a>
 	<a href="/">#3</a>
 	<a href="/">#4</a>
 	<a href="/">#5</a>
