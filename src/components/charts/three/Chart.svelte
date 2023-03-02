@@ -5,6 +5,8 @@
 	import ColorLegend from '../../peripherals/ColorLegend.svelte';
 	import Axis from './Axis.svelte';
 
+	import Path from './Path.svelte';
+
 	export let data;
 	export let maxValue;
 
@@ -55,13 +57,12 @@
 			{/each}
 			{#each data as t}
 				{@const dimension = t['dimension']}
-				<path
+				<Path
 					d={path(t)}
-					fill="none"
-					on:mouseover={() => onSelect(dimension)}
-					on:mouseout={() => onSelect('')}
-					stroke={selected == dimension || selected === '' ? colorScale(dimension) : '#ccc'}
-					stroke-opacity={selected == dimension || selected === '' ? '1' : '0.5'}
+					onSelect={() => onSelect(dimension)}
+					onReset={() => onSelect('')}
+					isGreyedOut={!(dimension === selected || selected === '')}
+					color={colorScale(dimension)}
 				/>
 			{/each}
 		</g>
