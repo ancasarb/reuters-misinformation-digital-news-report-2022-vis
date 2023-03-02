@@ -4,15 +4,16 @@
 		As an educational project, can we create ten visualizations from one simple dataset?
 	</p>
 	<div>
-		<p>The dataset is sourced from the 2022 Digital News Report by the Reuters institute</p>
+		<p>The dataset is sourced from the 2022 Digital News Report by the Reuters Institute</p>
 		<p>
 			on misinformation, showing the proportion who saw false or misleading information about each
 			topic
 		</p>
 		<p>in the last week, for selected regions.</p>
+		<p class="small">Note: This is a independent, educational project and has no affiliation with the Reuters Institute whatsoever.</p>
 	</div>
 	<img src="images/data.png" alt="raw data" />
-	<div class="footnote">
+	<div class="small">
 		<p>Q: Have you seen false or misleading information about any of the</p>
 		<p>
 			following topics, in the last week? Base: Total sample in each region: Europe = 48,836, North
@@ -111,7 +112,8 @@
 		color: #414140;
 	}
 
-	.footnote {
+	.small {
 		font-size: 0.8em;
 	}
+	
 </style>
