@@ -13,11 +13,11 @@
 	$: transform = `translate(0, ${y})`;
 
 	$: {
-		const axisGeneratorBottom = axisBottom()
+		const axisGenerator = axisBottom()
 			.scale(xScale)
 			.tickValues(range(0, 75, 15))
 			.tickFormat((d) => d + format);
-		select(axis).call(axisGeneratorBottom);
+		select(axis).call(axisGenerator);
 		select(axis).select('.domain').attr('stroke', '#ccc');
 		select(axis).selectAll('.tick').select('line').attr('stroke-width', 0);
 	}
