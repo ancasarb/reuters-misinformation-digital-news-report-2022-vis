@@ -1,0 +1,18 @@
+{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "strict": true,
+    "sourceMap": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "target": "es2018",
+    "lib": ["es2018"],
+    "declaration": true,
+    "skipLibCheck": true,
+    "types": ["jest", "node"],
+    "outDir": "dist",
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules/**/*"]
+}
