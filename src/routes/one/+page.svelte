@@ -7,7 +7,7 @@
 	} from '../accessors.ts';
 
 	import Chart from '../../components/charts/one/Chart.svelte';
-  import { regions, topics } from '../../model/model.js';
+  import { regions, topics } from '../../model/model.ts';
 	import type { LayoutResponse } from "../+layout.ts";
 
 	export let data: LayoutResponse;

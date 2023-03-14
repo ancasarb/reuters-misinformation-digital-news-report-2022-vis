@@ -7,7 +7,7 @@
 		topicAccessor,
 		valueAccessor
 	} from '../accessors.ts';
-  import { regions, topics } from '../../model/model.js';
+  import { regions, topics } from '../../model/model.ts';
 
 	export let data;
 </script>
