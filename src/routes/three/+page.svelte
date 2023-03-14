@@ -7,12 +7,11 @@
 
 	import {
 		colorScale,
-		regions,
 		regionAccessor,
-		topics,
 		topicAccessor,
 		valueAccessor
-	} from '../accessors.js';
+	} from '../accessors.ts';
+  import { regions, topics } from '../../model/model.ts';
 
 	export let data;
 
