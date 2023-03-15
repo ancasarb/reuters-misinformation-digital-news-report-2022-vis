@@ -1,12 +1,7 @@
 <script>
-	import {
-		colorScale,
-		regions,
-		regionAccessor,
-		topics,
-		topicAccessor,
-		valueAccessor
-	} from '../accessors.js';
+	import { regionAccessor, topicAccessor, valueAccessor } from '../../scripts/accessors.js';
+	import { topics, regions } from '../../scripts/static.js';
+	import { colorScale } from '../../scripts/scales.js';
 
 	import Chart from '../../components/charts/one/Chart.svelte';
 

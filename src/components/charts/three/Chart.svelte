@@ -59,8 +59,8 @@
 				{@const dimension = t['dimension']}
 				<Path
 					d={path(t)}
-					onSelect={() => onSelect(dimension)}
-					onReset={() => onSelect('')}
+					on:mouseover={() => onSelect(dimension)}
+					on:mouseout={() => onSelect('')}
 					isGreyedOut={!(dimension === selected || selected === '')}
 					color={colorScale(dimension)}
 				/>
