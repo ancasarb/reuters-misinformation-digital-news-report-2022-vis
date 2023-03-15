@@ -1,5 +1,4 @@
-const processing = require('./processing');
-const parallelCoordinates = processing.parallelCoordinates;
+import { parallelCoordinates } from './processing.js';
 
 const data = [
 	{
