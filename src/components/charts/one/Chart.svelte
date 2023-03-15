@@ -71,8 +71,8 @@
           {#each clusterData as d}
             <Bar
               {d}
-              onSelect={() => onSelect(barAccessor(d))}
-              onReset={() => onSelect('')}
+              on:mouseover={() => onSelect(barAccessor(d))}
+              on:mouseout={() => onSelect('')}
               {selected}
               xAccessor={valueAccessor}
               xScale={xScaleBars}

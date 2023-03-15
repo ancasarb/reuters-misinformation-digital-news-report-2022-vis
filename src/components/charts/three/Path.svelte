@@ -2,9 +2,6 @@
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 
-	export let onSelect;
-	export let onReset;
-
 	export let color;
     export let isGreyedOut;
 
@@ -27,8 +24,16 @@
 <path
 	{d}
 	fill="none"
-	on:mouseover={onSelect}
-	on:mouseout={onReset}
 	stroke={color}
 	stroke-opacity={$valueOpacity}
+/>
+
+<path
+	{d}
+	fill="none"
+	on:mouseover
+	on:mouseout
+	stroke={color}
+	stroke-opacity={0}
+	stroke-width={20}
 />

@@ -66,8 +66,8 @@
 								x={valueScale(value)}
 								y={groupScale.bandwidth()}
 								color={colorScale(category)}
-								onSelect={() => onSelect(category)}
-								onReset={() => onSelect('')}
+								on:mouseover={() => onSelect(category)}
+								on:mouseout={() => onSelect('')}
 								{selected}
 								padding={d.padding}
 							/>

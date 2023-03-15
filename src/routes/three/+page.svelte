@@ -5,34 +5,24 @@
 	import lodash from 'lodash';
 	const filter = lodash.filter;
 
-	import {
-		colorScale,
-		regions,
-		regionAccessor,
-		topics,
-		topicAccessor,
-		valueAccessor
-	} from '../accessors.js';
+	import { regionAccessor, topicAccessor, valueAccessor } from '../../scripts/accessors.js';
+	import { topics, regions } from '../../scripts/static.js';
+	import { colorScale } from '../../scripts/scales.js';
+	import { parallelCoordinates } from '../../scripts/processing.js';
 
 	export let data;
 
 	$: maxValue = Math.ceil(max(data.values, valueAccessor) / 10) * 10;
 
-	$: postprocessed = [];
-	$: {
-		for (let i in regions) {
-			const dimension = regions[i];
-			const filtered = filter(data.values, (item) => regionAccessor(item) === dimension);
+	$: postprocessed = parallelCoordinates(data, regions, regionAccessor, topicAccessor, valueAccessor);
 
-			let d = { dimension: dimension };
-			for (let j in filtered) {
-				const curr = filtered[j];
-				d[topicAccessor(curr)] = valueAccessor(curr);
-			}
-
-			postprocessed.push(d);
-		}
-	}
 </script>
 
-<Chart data={postprocessed} groups={topics} categories={regions} {maxValue} {colorScale} format="%" />
+<Chart
+	data={postprocessed}
+	groups={topics}
+	categories={regions}
+	{maxValue}
+	{colorScale}
+	format="%"
+/>

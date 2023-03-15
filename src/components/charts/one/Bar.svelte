@@ -4,8 +4,6 @@
 
   export let d;
 
-  export let onSelect;
-  export let onReset;
   export let selected;
 
   export let xAccessor;
@@ -55,8 +53,8 @@
       height={height}
       width={width}
       fill="#ececec"
-      on:mouseover={onSelect}
-      on:mouseout={onReset}
+      on:mouseover
+      on:mouseout
     />
     <rect
       x={0}
@@ -64,8 +62,8 @@
       height={height}
       width={x}
       fill={color}
-      on:mouseover={onSelect}
-      on:mouseout={onReset}
+      on:mouseover
+      on:mouseout
       opacity={$valueOpacity}
     />
   </svg>
@@ -73,8 +71,8 @@
   <div
     class="annotation"
     style:right="{width-x}px"
-    on:mouseover={onSelect}
-    on:mouseout={onReset}
+    on:mouseover
+    on:mouseout
     style:opacity="{$textOpacity}">
     {value}{format}
   </div>

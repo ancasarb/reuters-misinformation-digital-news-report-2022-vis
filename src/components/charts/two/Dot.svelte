@@ -7,13 +7,12 @@
 	export let value;
 	export let format;
 
-	export let onSelect;
-	export let onReset;
 	export let selected;
 
 	export let padding;
 
 	const radius = 7;
+	$: isSelected = selected == category;
 	$: opacity = selected == category ? '1' : '0';
 	$: padding = padding ? padding : 0;
 </script>
@@ -22,12 +21,12 @@
 	r={radius}
 	cx={x}
 	cy={y + padding}
-	fill={selected == category ? color : '#ccc'}
-	fill-opacity={selected == category ? '1' : '0.5'}
+	fill={isSelected ? color : '#ccc'}
+	fill-opacity={isSelected ? '1' : '0.5'}
 	stroke={color}
 	stroke-opacity="1"
-	on:mouseover={onSelect}
-	on:mouseout={onReset}
+	on:mouseover
+	on:mouseout
 />
 
 <line x1={x} x2={x} y1={y - radius + padding} y2={y - radius * 2 + padding} stroke={color} stroke-opacity={opacity} />
